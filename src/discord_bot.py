@@ -1,7 +1,7 @@
 import interactions
 from interactions import Client, Intents, slash_command, SlashContext, listen, slash_option, OptionType
-from main import (full_pipeline_inference)
-from main import (collection_anduril)
+from .main import (full_pipeline_inference)
+from .main import (collection_anduril)
 from dotenv import load_dotenv
 import os 
 
