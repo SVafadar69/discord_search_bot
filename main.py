@@ -230,10 +230,11 @@ def full_pipeline_inference(prompt_name: str, chroma_collection: str, user_query
     return llm_response
 
 
-#client.run(discord_bot_token)
+'''
+client.run(discord_bot_token)
 if __name__ == "__main__":
-    # messages = ast.literal_eval(open('discord_messages_all', 'r', encoding='utf-8').read())
-    # chunk_documents(messages)
+    messages = ast.literal_eval(open('discord_messages_all', 'r', encoding='utf-8').read())
+    chunk_documents(messages)
     query = 'What is ohsheetklaus currently building'
     responses = run_hybrid_search(collection = collection_anduril, query = query)
     documents = responses.get('documents', '')[:10]
@@ -243,3 +244,4 @@ if __name__ == "__main__":
     print(f'token length: {token_count}')
     llm_response = answer_query(system_prompt = system_prompt)
     print(f'llm_responses: {llm_response}')
+'''
