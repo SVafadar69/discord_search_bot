@@ -1,0 +1,42 @@
+import interactions
+from interactions import Client, Intents, slash_command, SlashContext, listen, slash_option, OptionType
+from main import (full_pipeline_inference)
+from main import (collection_anduril)
+from dotenv import load_dotenv
+import os 
+
+
+bot = Client(intents = Intents.ALL)
+
+prompt_name = f'{os.path.join(os.getcwd(), "prompts/search_prompt.txt")}'
+print(f'prompt_name: {prompt_name}')
+
+@listen
+async def on_ready():
+    print('Ready')
+
+@slash_command(name="query", description="What do you want to know")
+@slash_option(
+    name = 'input_text', 
+    description = 'input_text', 
+    required = True, 
+    opt_type = OptionType.STRING
+)
+
+async def get_response(ctx: SlashContext, input_text: str): 
+    await ctx.defer()
+    # replace data_querying with Chroma 
+    response = await full_pipeline_inference(prompt_name = prompt_name, chroma_collection = collection_anduril, user_query = input_text)
+    response = await data_querying(input_text)
+    response = f'**Input Query**: {input_text}\n\n{response}'
+    await ctx.send(response)
+
+@slash_command(name='updateddb', description='Update your the chroma db')
+async def updated_database(ctx: SlashContext): 
+    await ctx.defer()
+    update = await update_index() # replace with your own 
+    if update: response = f'Updated {sum(update)} document chunks'
+    else: response = f'Error updating index'
+    await ctx.send(response)
+
+bot.start(os.getenv('DISCORD_BOT_TOKEN'))
