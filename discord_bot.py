@@ -1,7 +1,7 @@
 import interactions
 from interactions import Client, Intents, slash_command, SlashContext, listen, slash_option, OptionType
-from ..main import (full_pipeline_inference)
-from ..main import (collection_anduril)
+from src.search_functions import (full_pipeline_inference)
+from src.search_functions import (collection_anduril)
 from dotenv import load_dotenv
 import os 
 
@@ -26,8 +26,7 @@ async def on_ready():
 async def get_response(ctx: SlashContext, input_text: str): 
     await ctx.defer()
     # replace data_querying with Chroma 
-    response = await full_pipeline_inference(prompt_name = prompt_name, chroma_collection = collection_anduril, user_query = input_text)
-    response = await data_querying(input_text)
+    response = full_pipeline_inference(prompt_name = prompt_name, chroma_collection = collection_anduril, user_query = input_text)
     response = f'**Input Query**: {input_text}\n\n{response}'
     await ctx.send(response)
 
