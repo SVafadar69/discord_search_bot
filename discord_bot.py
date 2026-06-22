@@ -4,6 +4,7 @@ from src.search_functions import (full_pipeline_inference)
 from src.search_functions import (collection_anduril)
 from dotenv import load_dotenv
 import os 
+import asyncio 
 
 
 bot = Client(intents = Intents.ALL)
@@ -38,4 +39,17 @@ async def updated_database(ctx: SlashContext):
     else: response = f'Error updating index'
     await ctx.send(response)
 
-bot.start(os.getenv('DISCORD_BOT_TOKEN'))
+async def main():
+    config = uvicorn.Config(app, host='0.0.0.0', port=int(os.getenv('PORT', 8000)), reload=False)
+    server = uvicorn.Server(config)
+
+    await asyncio.gather(
+        server.serve(),
+        bot.start(os.getenv('DISCORD_BOT_TOKEN'))
+    )
+
+
+if __name__ == "__main__": 
+    asyncio.run(main())
+    
+
