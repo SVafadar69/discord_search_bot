@@ -7,11 +7,15 @@ import os
 import asyncio 
 import uvicorn 
 
-
+app = FastAPI()
 bot = Client(intents = Intents.ALL)
 
 prompt_name = f'{os.path.join(os.getcwd(), "prompts/search_prompt.txt")}'
 print(f'prompt_name: {prompt_name}')
+
+@app.get('/')
+async def health():
+    return {'status': 'ok'}
 
 @listen
 async def on_ready():
