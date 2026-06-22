@@ -5,6 +5,7 @@ from src.search_functions import (collection_anduril)
 from dotenv import load_dotenv
 import os 
 import asyncio 
+import uvicorn 
 
 
 bot = Client(intents = Intents.ALL)
