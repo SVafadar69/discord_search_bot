@@ -6,6 +6,7 @@ from dotenv import load_dotenv
 import os 
 import asyncio 
 import uvicorn 
+from fastapi import FastAPI
 
 app = FastAPI()
 bot = Client(intents = Intents.ALL)
