@@ -4,4 +4,4 @@ discord_py_interactions==5.16.0
 groq==1.4.0
 openai==2.43.0
 python-dotenv==1.2.2
-tiktoken==0.9.0
+#tiktoken==0.9.0

@@ -1,7 +1,7 @@
 import json
 from dotenv import load_dotenv 
 import os 
-import tiktoken
+# import tiktoken
 import openai 
 from openai import OpenAI
 from groq import Groq
@@ -222,10 +222,10 @@ def retrieve_messages(messages_path: str = 'discord_messages'):
     print(len(senders))
     print(senders)
 
-def get_token_count(text: str) -> int: 
-    encoding = tiktoken.encoding_for_model("gpt-4")
-    tokens = encoding.encode(text)
-    return len(tokens)
+# def get_token_count(text: str) -> int: 
+#     encoding = tiktoken.encoding_for_model("gpt-4")
+#     tokens = encoding.encode(text)
+#     return len(tokens)
 
 def full_pipeline_inference(prompt_name: str, chroma_collection: str, user_query: str, limit: int = 30) -> str: 
     responses = run_hybrid_search(collection = chroma_collection, query = user_query, limit = limit)
