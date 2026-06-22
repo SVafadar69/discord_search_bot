@@ -51,7 +51,7 @@ async def main():
 
     await asyncio.gather(
         server.serve(),
-        bot.start(os.getenv('DISCORD_BOT_TOKEN'))
+        bot.astart(os.getenv('DISCORD_BOT_TOKEN'))
     )
 
 
